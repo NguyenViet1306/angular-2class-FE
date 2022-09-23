@@ -1,0 +1,101 @@
+<h2>List Product</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Amount</th>
+    <th>Category</th>
+    <th colspan="2">Action</th>
+  </tr>
+  <tr *ngFor="let p of products">
+    <td>{{p.name}}</td>
+    <td>{{p.price}}</td>
+    <td>{{p.amount}}</td>
+    <td>{{p.category!.name}}</td>
+    <td><button (click)="update(p.id)">Update</button></td>
+    <td><button (click)="delete(p.id)">Delete</button></td>
+    <td><button (click)="detail(p.id)">Detail</button></td>
+  </tr>
+</table>
+
+
+<form [formGroup]="formCreate" >
+  <h2>From Create</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td><input type="text" formControlName="price"></td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td><input type="text" formControlName="amount"></td>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td>
+        <select >
+          <option *ngFor="let c of categories" value="{{c.id }}"> {{c.name}} </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2"></th>
+<!--      <td *ngIf="idUpdate == null">-->
+        <button type="submit" (click)="createProduct()">Create</button>
+<!--      </td>-->
+    </tr>
+  </table>
+</form>
+
+<form [formGroup]="formUpdate" >
+  <h2>From Update</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td><input id="name" type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td><input id="price" type="text" formControlName="price"></td>
+    </tr>
+    <tr>
+      <th>Amount</th>
+      <td><input id="amount" type="text" formControlName="amount"></td>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td>
+        <select id="categories">
+          <option *ngFor="let c of categories" value="{{c.id }}"> {{c.name}} </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2"></th>
+        <button type="submit" (click)="updateProduct()">Update</button>
+    </tr>
+  </table>
+</form>
+
+<div id="detail" hidden>
+  <h2> Detail Product </h2>
+  <table>
+    <tr>
+      <td>Name : {{nameDetail}}</td>
+    </tr>
+    <tr>
+      <td>Price : {{priceDetail}}</td>
+    </tr>
+    <tr>
+      <td>Amount : {{amountDetail}}</td>
+    </tr>
+    <tr>
+      <td>Category : {{categoryDetail}}</td>
+    </tr>
+  </table>
+<button (click)="closeDetail()">close</button>
+</div>
